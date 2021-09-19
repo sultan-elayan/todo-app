@@ -4,6 +4,11 @@ import '../../app.css';
 import { Button } from "react-bootstrap"
 export default function Settings(props) {
 
+const colorState =(color)=>{
+    
+    return  color ?'success':'danger';
+    
+}
     return (
         <>
             {props.activeList.map((item) => (
@@ -17,7 +22,7 @@ export default function Settings(props) {
                         <p>
                             <small>Difficulty: {item.difficulty}</small>
                         </p>
-                        <Button variant={props.color} type='submit' onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()} </Button>
+                        <Button variant={colorState(item.complete)} type='submit' onClick={() => props.toggleComplete(item.id)}>{item.complete? "completed " : "pending"} </Button>
                     </Card>
                     <br />
 

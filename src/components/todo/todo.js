@@ -11,8 +11,11 @@ const ToDo = () => {
   const [list, setList] = useState([]);
   const [incomplete, setIncomplete] = useState([]);
   const { handleChange, handleSubmit } = useForm(addItem);
-
+  
+  const [ color, setColor ] = useState("danger");
+  
   function addItem(item) {
+
     item.id = uuid();
     item.complete = false;
     setList([...list, item]);
@@ -28,6 +31,7 @@ const ToDo = () => {
     const items = list.map((item) => {
       if (item.id == id) {
         item.complete = !item.complete;
+        setColor(color == "danger" ? "success": "danger")
       }
       return item;
     });
@@ -72,7 +76,7 @@ const ToDo = () => {
 
 
 
-      <Pagination className='pagList-container' list={list} incomplete={incomplete} toggleComplete={toggleComplete}></Pagination>
+      <Pagination className='pagList-container' list={list} incomplete={incomplete} color={color} toggleComplete={toggleComplete}></Pagination>
     </>
   );
 };
