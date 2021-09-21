@@ -1,15 +1,12 @@
-import React from 'react';
+import React ,{ useState} from 'react';
+
 export const SettingsContext = React.createContext();
 
 export default function Settings(props) {
-    const state = {
-        itemsPerPage: 2,
-        sortCat: 'hardest',
-        showCompleted: true,
-    }
-
+    const [itemsPerPage, setItemsPerPage] = useState(2);
+    const [showCompleted, setShowCompleted] = useState(false);
    return (
-        <SettingsContext.Provider value={state}>
+        <SettingsContext.Provider value={{ itemsPerPage, showCompleted, setItemsPerPage, setShowCompleted }}>
             {props.children}
         </SettingsContext.Provider>
     )
