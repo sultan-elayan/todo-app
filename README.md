@@ -3,9 +3,9 @@
 ## Deployment links
 
 
-[sandBox- context-settings](https://6149f00bf9a0361036e72cc6--stupefied-feynman-67ba08.netlify.app/)
+[sandBox- context-settings](https://e4uyk.csb.app/)
 
-[sandBox- context-methods]()
+[sandBox- context-methods](https://rf1wm.csb.app/)
 
 <hr>
 
