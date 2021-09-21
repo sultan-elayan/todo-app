@@ -22,15 +22,12 @@ export default function Form() {
     settings.setShowCompleted(completed);
   }, []);
 
-  function handleSubmit (e) {
 
-   
-}
   return (
     <>
       <div>
         <h2>Settings : </h2>
-        <form onSubmit={handleSubmit}>
+        <form >
           <FormGroup label='Cards Per Page (1 - 4) :' labelFor='text-input'>
             <InputGroup id='text-input' placeholder='# of items/page' type='Number' onChange={handleChange} name='items' value={settings.itemsPerPage} min='1' max='4' />
           </FormGroup>
@@ -43,7 +40,6 @@ export default function Form() {
               <span className='bp3-icon bp3-icon-double-caret-vertical'></span>
             </div>
           </FormGroup>
-          <button type="submit">Save Change</button>
         </form>
       </div>
     </>
