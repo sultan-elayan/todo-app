@@ -13,7 +13,7 @@ const colorState =(color)=>{
         <>
             {props.activeList.map((item) => (
                 <div className='cardsContainer'>
-                    <Card interactive={true} elevation={Elevation.TWO} key={item.id} className='card' style={{ width: '45rem' , height:'223px' }}  >
+                    <Card interactive={true} elevation={Elevation.TWO} key={item.id} className='card' style={{ width: '20rem' , height:'223px' }}  >
                         <small> {item.assignee}</small>
                         <p>
                             <hr />
