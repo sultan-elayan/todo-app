@@ -12,10 +12,6 @@ export default function Pagination(props) {
   const [activePage, setActivePage] = useState(1);
   const [buttonsArray, setButtonsArray] = useState(btnArr);
 
-
-  const [color, setColor] = useState(settings.color == 'danger' ? 'success' : 'danger');
-  const [toDoStatus, setToDoStatus] = useState(settings.toDoStatus == 'pending' ? 'completed' : 'pending');
-
   useEffect(() => {
     setChosenList(settings.showCompleted ? props.list : props.incomplete);
     setActiveList(chosenList);
@@ -61,11 +57,11 @@ export default function Pagination(props) {
       setActivePage(pageNumber);
     }
   }
-  console.log("color---233333333333333333333333333322-------",props.color)
+
   return (
     <>
       <br />
-      <List activeList={activeList}  color={props.color} toDoStatus={props.toDoStatus} toggleComplete={props.toggleComplete} />
+      <List activeList={activeList} color={props.color} toDoStatus={props.toDoStatus} toggleComplete={props.toggleComplete} />
 
       <br />
 

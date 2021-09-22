@@ -2,12 +2,10 @@ import React from 'react';
 import { Card, Elevation } from '@blueprintjs/core';
 import '../../app.css';
 import { Button } from "react-bootstrap"
-export default function Settings(props) {
+export default function List(props) {
 
-const colorState =(color)=>{
-    
-    return  color ?'success':'danger';
-    
+const colorState =(color)=>{    
+    return  color ?'success':'danger';   
 }
     return (
         <>
@@ -17,16 +15,11 @@ const colorState =(color)=>{
                         <small> {item.assignee}</small>
                         <p>
                             <hr />
-                            <p>{item.text}</p>
-                        </p>
-                        <p>
-                            <small>Difficulty: {item.difficulty}</small>
-                        </p>
+                            <p>{item.text}</p></p>
+                        <p><small>Difficulty: {item.difficulty}</small></p>
                         <Button variant={colorState(item.complete)} type='submit' onClick={() => props.toggleComplete(item.id)}>{item.complete? "completed " : "pending"} </Button>
                     </Card>
                     <br />
-
-
                 </div>
             ))}
         </>

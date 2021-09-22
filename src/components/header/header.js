@@ -3,7 +3,7 @@ import { Navbar, Alignment,Button } from '@blueprintjs/core';
 import { Link } from 'react-router-dom';
 import '../../app.css';
 
-export default function Settings() {
+export default function Header() {
 
     return (
       <>
@@ -14,7 +14,6 @@ export default function Settings() {
           <Link to='/'>
             <Button className='bp3-minimal' icon='home' text='Home' />
           </Link>
-
           <Link to='/settings'>
             <Button className='bp3-minimal' icon='settings' text='Settings' />
           </Link>

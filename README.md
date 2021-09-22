@@ -7,6 +7,7 @@
 
 [sandBox- context-methods](https://rf1wm.csb.app/)
 
+[sandBox - Auth ]()
 <hr>
 
 ## UML
@@ -19,3 +20,9 @@
 ### context-settings
 
 ![](lab-32.jpeg)
+
+
+
+### Auth
+
+![](lab-33.jpeg)
