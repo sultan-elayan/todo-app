@@ -1,3 +1,7 @@
+
+
+
+
 import React ,{ useState} from 'react';
 
 export const SettingsContext = React.createContext();

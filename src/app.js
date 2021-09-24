@@ -1,48 +1,68 @@
-
-import React from 'react';
-import './app.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useContext } from "react";
+import Settings from './context/settingsContext.js';
 import ToDo from './components/todo/todo.js';
-import Form from './context/form';
-import SettingsProvider from './context/settings';
-import Header from './components/header/header';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/header.js';
+ import 'normalize.css';
+ import '@blueprintjs/core/lib/css/blueprint.css'
+ import '@blueprintjs/icons/lib/css/blueprint-icons.css'
+import Footer from './components/footer.js';
+import SettingForm from './components/SettingForm.js';
+import LoginForm from './components/login/login';
+import {LoginContext} from './context/loginContext';
+import { If, Else, Then } from "react-if";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Signup from "./components/login/signup.js";
+export default function App(props) {
 
-import LoginProvider from './context/Login';
-import Login from './components/login/login';
-import Auth from './components/auth/auth';
-
-export default class App extends React.Component {
-  render() {
+  const  context  = useContext(LoginContext);
+ 
     return (
-      <LoginProvider>
-        <Login />
-        <Auth capability="read">
-          <SettingsProvider>
-            <Router>
-              <Header />
-              <Switch>
-                <Route exact path='/'>
-                  <ToDo />
-                </Route>
-                <Route exact path='/settings'>
-                  <Form />
-                </Route>
-              </Switch>
-            </Router>
-          </SettingsProvider>
-        </Auth>
-        <Auth capability="update">
-          {/* <button>Update Button</button> */}
-        </Auth>
-        <Auth capability="create">
-          {/* <button>+ Create Button</button> */}
-        </Auth>
-        <Auth capability="delete">
-          {/* <button>Delete Button</button> */}
-        </Auth>
-      </LoginProvider>
+      <Router>
+        <Switch>
+        
+
+          <If condition={context.loggedIn==true}>
+            {console.log(context)}
+            <Then>
+            <Settings>
+      <Route exact path="/">
+        <Header/>
+            <ToDo />
+          
+         <Footer/>  
+         </Route> 
+         <Route path="/form">
+         <Header/>
+        <SettingForm/>
+
+            <Footer/>
+         </Route>
+        
+      </Settings>
+
+            </Then>
+            <Else>
+              <Route exact path="/">
+
+            <LoginForm/>
+              </Route>
+            <Route path="/signup">
+              <Signup/>
+            </Route>
+           
+            </Else>
+            
+          </If>
+      
+
+       
+      </Switch>
+      </Router>
     );
-  }
+
 }
