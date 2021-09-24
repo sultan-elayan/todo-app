@@ -1,63 +1,110 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { When } from 'react-if';
-import { LoginContext } from '../../context/Login';
+import { Link } from "react-router-dom";
+import { LoginContext } from "../../context/loginContext";
+import "./style.css";
 
-import { Button, Form } from 'react-bootstrap';
+function LoginForm() {
+  const signup = () => {
+    window.location.href = "/signup"
+  }
+  let context = useContext(LoginContext)
 
-export default class Login extends React.Component {
+  let [userName, setUserName] = useState('')
+  let [password, setPassword] = useState('')
 
-    static contextType = LoginContext;
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        };
-    }
+  const handleInputUser = e => {
+    setUserName(e.target.value);
+  }
+  const handleInputPass = e => {
+    setPassword(e.target.value);
+  }
+  const handlerSubmit = async e => {
+    e.preventDefault();
 
-    handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
+    await context.login(userName, password);
+    window.location.href = "/"
 
-    handleSubmit = e => {
-        e.preventDefault();
-        // use login context to perform login operation
-        this.context.login(this.state.username, this.state.password);
-    }
+  }
+  return (
+    <>
+      <When
+        condition={!context.loggedIn}
+      >
+        <div>
+          <header>
+            <nav className="bp3-navbar .modifier bp3-dark" >
+              <div className="bp3-navbar-group bp3-align-left">
+                <div className="bp3-navbar-heading">TO-DO</div>
 
-    render() {
-        return (
-            <>
-                <When condition={!this.context.loggedIn}>
-                    <h2> Note : use the ( email: sultan@gmail.com ) ( password: 123 )  to login </h2>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control placeholder="username" type="text" name="username" onChange={this.handleChange} />
-                            <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group>
+              </div>
+              <div className="bp3-navbar-group bp3-align-right">
+                <Link className="bp3-button bp3-minimal bp3-icon-home" to="/">Home</Link>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control placeholder="password" type="password" name="password" onChange={this.handleChange} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </When>
-                <When condition={this.context.loggedIn}>
-                    <div>{this.context.user.email}</div>
-                    <button onClick={this.context.logout}>Logout</button>
-                </When>
-            </>
+              </div>
+            </nav>
+          </header>
+          <section className="ftco-section">
+            <div className="container">
 
-        )
-    }
+              <div className="row justify-content-center">
+                <div className="col-md-6 col-lg-5">
+                  <div className="login-wrap p-4 p-md-5">
+                    <div className="icon d-flex align-items-center justify-content-center">
+                      <span className="fa fa-user-o">Hi !!</span>
+                    </div>
+                    <h3 className="text-center mb-4">Do You Have an account?</h3>
+                    <form onSubmit={handlerSubmit}>
+                      <div className="form-group">
+                        <input
+
+                          onChange={handleInputUser}
+                          type="text"
+                          className="form-control rounded-left"
+                          placeholder="Username"
+                          required
+                        />
+                      </div>
+                      <div className="form-group d-flex">
+                        <input
+                          onChange={handleInputPass}
+                          type="password"
+                          className="form-control rounded-left"
+                          placeholder="Password"
+                          required
+                        />
+                      </div>
+
+                      <br />
+                      <div className="form-group">
+                        <button
+                          type="submit"
+                          className="btn btn-primary rounded submit p-3 px-5"
+                        >
+                          LOGIN
+                        </button>
+                        <button
+
+                          className="btn btn-primary rounded submit p-3 px-5"
+                          style={{ margin: '0 0 0 190px' }}
+                          onClick={signup}
+                        >
+                          Sign-Up
+                        </button>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </When>
+
+    </>
+  );
 }
 
+export default LoginForm;
