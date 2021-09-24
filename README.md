@@ -9,7 +9,7 @@
 
 [sandBox - Auth ](https://uymyp.csb.app/)
 
-[sandBox - Auth 2 ]()
+[sandBox - Auth 2 ](https://9frr8.csb.app/)
 <hr>
 
 ## UML
